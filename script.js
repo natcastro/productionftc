@@ -129,6 +129,7 @@ function renderLista() {
     <div class="page-lista">
       <div class="hero">
         <div class="hero-bg"></div>
+        <div class="hero-scrim"></div>
         <div class="hero-content">
           <div class="hero-date">Martes 11 de septiembre</div>
           <h1 class="hero-title">Esto corre hoy, en orden.</h1>
