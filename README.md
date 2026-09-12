@@ -246,7 +246,7 @@ Summary information is grouped together as the state of the day, while detailed 
 
 ### Before / After Comparison
 
-![Before and After Design Comparison](uploads/before%20and%20after.png)
+![Before and After Design Comparison](uploads/beforeandafter.png)
 
 **Before:** Information was present, but weak grouping and limited visual separation made the landing page feel flatter. Multiple elements competed for attention, making it less obvious where the planner should look first.
 
