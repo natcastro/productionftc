@@ -161,10 +161,6 @@ The planner will describe manually opening the Odoo shortfall information and cr
 
 They may also mention that this process consumes part of the limited early-morning planning window.
 
-### What This Tests
-
-This question tests whether the assumed problem actually occurs in the planner's real workflow and whether the manual cross-reference is significant enough to justify the prototype.
-
 ---
 
 ## Value
@@ -181,11 +177,6 @@ The response will likely relate to:
 - Certainty
 - Confidence
 - Peace of mind
-
-### What This Tests
-
-This tests whether the proposed fundamental value — **certainty and speed of decision** — matches the value the planner actually experiences.
-
 ---
 
 ## Persona
@@ -197,10 +188,6 @@ This tests whether the proposed fundamental value — **certainty and speed of d
 ### Prediction
 
 The planner will likely describe the task as occurring daily, often after receiving updated information about missing orders, while also preparing or adjusting plant-floor production schedules.
-
-### What This Tests
-
-This validates whether the selected persona actually experiences the time pressure and task-switching assumed by the prototype.
 
 ---
 
@@ -219,13 +206,6 @@ The planner should respond with something similar to:
 > "It tells me what is most urgent to produce today."
 
 The response should focus on the purpose of the tool rather than individual fields, numbers, or interface components.
-
-### What This Tests
-
-This directly evaluates whether the interface communicates its core capability at first glance.
-
-If the planner can identify the purpose after five seconds, the visual hierarchy and signaling are working. If they instead describe isolated metrics or cannot determine the purpose, the landing screen needs further refinement.
-
 
 
 ## 4. Design Read: Grouping, Signaling, and Gestalt Principles
