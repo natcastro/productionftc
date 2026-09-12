@@ -208,5 +208,5 @@
 
 
 <p align="center">
-  <img src="uploads/before and after.png" alt="Before and After Design Comparison" width="900">
+  <img src="uploads/beforeandafter.png" alt="Before and After Design Comparison" width="900">
 </p>
