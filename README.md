@@ -1,364 +1,172 @@
 # FTC · Production Planning Prototype
 
-A production-prioritization prototype designed for a Colombian shapewear manufacturer. The tool helps a production planner determine what must run first each morning by combining inventory shortages, production stage, and order urgency into a single prioritized workflow.
+This prototype helps a production planner at a Colombian shapewear manufacturer determine what needs to be produced first by combining order urgency, inventory shortages, and the current production stage into one prioritized workflow.
 
 ---
 
-## 1. Design Rationale
+## 1. Need, Persona, Primary Capability, and Fundamental Value
 
 ### Need
 
-Production planners must manually cross-reference each missing reference's production stage against order urgency before deciding what to produce first.
+Production planners must manually cross-reference each missing reference's production stage against order urgency before deciding what to produce first. TikTok orders may require approximately a 12-hour turnaround, retail stores may have about one week, and international orders may allow a few additional days.
 
-The production process may include stages such as:
-
-**Insumos → Corte → Alfilerado → Confección → Bodega**
-
-At the same time, different order channels have different levels of urgency. For example, TikTok orders may require approximately a 12-hour turnaround, retail stores may have about one week, and international orders may allow a few additional days.
-
-Doing this manually for dozens of references every morning consumes time the planner does not have, especially because the same person is also responsible for scheduling work on the plant floor.
+Doing this manually for dozens of references every morning consumes time the planner does not have, especially because the same person also schedules work on the plant floor.
 
 ### Persona
 
-The primary user is a **production planner at a Colombian shapewear manufacturer** who reviews order shortfalls before 6:00 AM each day to determine what should run first.
+A **production planner at a Colombian shapewear manufacturer** who reviews order shortfalls before 6:00 AM each day to determine what should run first, while also managing plant-floor scheduling.
 
-The planner splits their time between:
+### Primary Capability
 
-- Reviewing inventory and order shortages
-- Determining production priorities
-- Scheduling work on the plant floor
-- Responding to changes in order urgency and production status
-
-Because these responsibilities overlap, the planner needs to make prioritization decisions quickly and confidently.
-
-### Capability
-
-The prototype allows the planner to:
-
-> **See, at a glance, a single ranked list of what to produce first without manually cross-referencing inventory, production stage, and order urgency for each reference.**
+See, at a glance, a **single ranked list of what to produce first**, without manually cross-referencing inventory, production stage, and order urgency for each reference.
 
 ### Fundamental Value
 
 **Certainty and speed of decision.**
 
-The planner starts the day already knowing what should run now and what can wait, rather than rebuilding the same judgment call from scratch every morning.
+The planner starts the day already knowing what should run now and what can wait, instead of rebuilding the same judgment call from scratch every morning.
 
 ---
 
-## 2. Core Workflow
+## 2. The Three Screens
 
-The prototype intentionally focuses on three screens:
+The three screens represent one complete operational loop:
 
 **See the priority → Understand why → Act on it**
-
-These three screens represent the complete operational loop.
-
----
 
 ### Screen 1 — Today's Run
 
 **"Esto corre hoy, en orden."**
 
-#### Job
-
-Show the day's production priority list already ranked and grouped into action bands:
-
-- Critical
-- Attention
-- Backlog
-
-The screen also presents summary information above the ranked list so the planner can understand the state of the day before reviewing individual references.
-
-#### Why This Screen Earned Its Place
-
-This screen contains the core value proposition of the prototype.
-
-If the planner only saw this screen, they would still understand what needs to run first and where attention is required.
-
-#### Design Question
-
-> Does the interface communicate the fundamental value before the user reads a single individual reference?
-
----
+- **Single job:** Show the day's production priorities already ranked and grouped into **Critical, Attention, and Backlog**, with summary counts above the list.
+- **Why it earned its slot:** This screen contains the core value proposition. Even if the planner only saw this screen, they would know what requires attention and what should run first.
+- **Design question:** Does the landing screen communicate the primary capability and fundamental value before the planner reads an individual reference?
 
 ### Screen 2 — Why This Score
 
-#### Job
-
-Explain why a particular reference received its priority score.
-
-The score is broken down across the factors used to determine production priority:
-
-1. Production stage
-2. Order urgency
-3. Inventory gap
-
-The screen also presents the underlying information pulled from Odoo so the planner can audit the recommendation.
-
-#### Why This Screen Earned Its Place
-
-A ranked list is only useful if the planner trusts it.
-
-The system therefore cannot simply display a priority score. It must make the reasoning behind that score understandable and auditable.
-
-#### Design Question
-
-> Does the visual hierarchy clearly separate the explanation of the score from the supporting operational record?
-
----
+- **Single job:** Explain why a specific reference received its priority score using three factors: **production stage, order urgency, and inventory gap**, alongside the supporting record from Odoo.
+- **Why it earned its slot:** A ranked list is only useful if the planner trusts it. The recommendation therefore needs to be explainable and auditable.
+- **Design question:** Does the visual hierarchy separate the reason for the score from the supporting operational record?
 
 ### Screen 3 — Cover the Gap
 
-#### Job
+- **Single job:** Let the planner act on a shortage by borrowing available units from another store or recording why a reference missed its production window.
+- **Why it earned its slot:** This screen closes the workflow by moving from diagnosis to action rather than simply displaying more information.
+- **Design question:** Is the primary action unambiguous, and does the screen remain visually consistent with the other two?
 
-Allow the planner to take action after identifying a shortage.
-
-The planner can:
-
-- Borrow available units from another store to cover the shortage
-- Record why a reference missed its production window
-- Follow the issue until it is resolved
-
-#### Why This Screen Earned Its Place
-
-This is the only screen in the core workflow where the planner acts instead of only reviewing information.
-
-It closes the loop between identifying a problem and resolving it.
-
-#### Design Question
-
-> Is the primary action unambiguous, and does the screen maintain the same visual language as the rest of the workflow?
+Together, these screens deliberately exclude login, permissions, settings, and other administrative functionality because those elements do not help examine the prototype's primary capability or fundamental value.
 
 ---
 
-## . Why These Three Screens — and Nothing Else
+## 3. Design Question Plan
 
-The three screens represent the entire operational loop:
+### Need
 
-> **See the priority → Understand why → Act on it**
-
-Login, permissions, account management, and system settings would be necessary in a production implementation, but they do not communicate the fundamental value of this prototype.
-
-Including them would compete with the core narrative rather than strengthen it.
-
-Within approximately five seconds, a new viewer should be able to recognize that this is a **manufacturing production-prioritization tool**, rather than a generic administrative dashboard.
-
----
- 
-## 3. Feedback Questions (step 6)
-
-The following questions are designed to test the prototype's assumptions about the **Need, Value, Persona, and Capability**.
-
-## Need
-
-### Question
-
+**Question:**  
 > "Walk me through the last time you had to figure out what to run first thing in the morning. What did you actually end up doing?"
 
-### Prediction
+**Prediction:**  
+The planner will describe manually reviewing Odoo shortfall information and cross-referencing inventory levels, shortages, and production status. They may also mention that this process consumes part of the limited early-morning planning window. This prediction relates directly to the manual work that **Today's Run** is intended to replace.
 
-The planner will describe manually opening the Odoo shortfall information and cross-referencing inventory levels, shortages, and production status to determine what needs to run.
+### Value
 
-They may also mention that this process consumes part of the limited early-morning planning window.
-
----
-
-## Value
-
-### Question
-
+**Question:**  
 > "If you never had to do that manual check again, what's the one or two words that come to mind for what that gives you?"
 
-### Prediction
+**Prediction:**  
+The planner will answer with something close to **time, certainty, confidence, or peace of mind**. This prediction relates to the prototype's intended fundamental value of certainty and speed of decision.
 
-The response will likely relate to:
+### Persona
 
-- Time
-- Certainty
-- Confidence
-- Peace of mind
----
-
-## Persona
-
-### Question
-
+**Question:**  
 > "How often does this shortfall check come up for you, and what are you usually juggling right before or after it?"
 
-### Prediction
+**Prediction:**  
+The planner will describe the task as occurring daily and overlapping with plant-floor scheduling or other production-planning responsibilities. This prediction relates to the persona assumption that speed matters because the planner is balancing multiple responsibilities.
 
-The planner will likely describe the task as occurring daily, often after receiving updated information about missing orders, while also preparing or adjusting plant-floor production schedules.
+### Capability
 
----
-
-## Capability
-
-### Question
-
+**Question:**  
 > "I'm going to show you this screen for five seconds, then hide it. What does this tool do?"
 
 **Screen shown:** Today's Run
 
-### Prediction
-
-The planner should respond with something similar to:
-
-> "It tells me what is most urgent to produce today."
-
-The response should focus on the purpose of the tool rather than individual fields, numbers, or interface components.
-
-
-## 4. Design Read: Grouping, Signaling, and Gestalt Principles
-
-### Does the Landing Screen Signal the Value at First Glance?
-
-Yes.
-
-The date, headline, and three summary counts — **Critical, Attention, and Units Missing** — appear before the detailed production records.
-
-This establishes the state of the production day before the planner needs to inspect any individual reference.
-
-The visual hierarchy is therefore:
-
-**Today's state → Priority groups → Individual references**
-
-rather than presenting every piece of information with equal visual weight.
+**Prediction:**  
+The planner will respond with something similar to, **"It shows me what's most urgent to make today,"** without needing to explain individual fields or numbers. This prediction relates specifically to the headline, summary counts, ranked list, and urgency bands on **Today's Run**.
 
 ---
 
-### Does Everything on the Landing Screen Earn Its Place?
+## 4. Design Justification and First Read
 
-Mostly, with one deliberate exception.
+### First Read
 
-The photograph of the sewing team communicates **brand and manufacturing context**, rather than operational information.
+The landing screen is designed to communicate the primary capability before the planner reads an individual reference.
 
-For that reason, it remains visually secondary. It supports the identity of the interface without competing with the summary counts or ranked production list for the user's first attention.
+The **date, headline, and three summary counts — Critical, Attention, and Units Missing —** appear before the detailed production list. This establishes a reading hierarchy:
 
----
+**Today's state → Urgency → Individual references**
 
-### What Groups Together, and Why?
+The planner should therefore understand that the interface is prioritizing today's production work before examining the underlying records.
 
-#### Common Region
+Most elements on the landing screen directly support this job. The sewing-team image is the one deliberate exception: it communicates manufacturing context and brand identity rather than operational information. For that reason, it remains visually secondary and does not compete with the summary metrics or ranked list.
 
-The three summary metrics are placed within the same visual region.
+### Grouping and Gestalt Principles
 
-This causes them to be perceived as one conceptual unit:
+**Common region:** The summary metrics are grouped within the same visual region so they are perceived as one conceptual unit: **the state of production today**. The ranked production list occupies a separate region below it.
 
-> **The state of production today**
+**Similarity:** References within the same urgency category share consistent visual treatment. For example, rows in the same urgency band use the same colored indicator, allowing the planner to distinguish **Crítico** from **Atención** before reading every label.
 
-That region is visually distinct from the ranked production list below it.
-
-#### Similarity
-
-References within the same urgency category share consistent visual treatment.
-
-For example, rows within an urgency band use the same colored indicator. This allows the planner to distinguish **Crítico** from **Atención** before reading every individual label.
-
-#### Continuity
-
-The production-stage sequence follows the actual physical movement of a garment through the manufacturing process:
+**Continuity:** The production stages follow the actual physical movement of a garment through the manufacturing process:
 
 **Insumos → Corte → Alfilerado → Confección → Bodega**
 
-This sequence matches the planner's existing mental model of production, allowing the eye to follow the same direction that the product follows on the plant floor.
+This sequence follows the planner's existing mental model and allows the interface to be read in the same direction that the product moves through the plant.
 
----
+### Affordances and Signifiers
 
-## 5. Signifiers and Interaction Design
+The store quantity control **affords increasing or decreasing the number of units borrowed from each location**. This allows the planner to combine available inventory from multiple stores when covering a shortage.
 
-The initial store-borrowing interaction did not clearly communicate that quantities could be adjusted.
+In the initial AI design, this affordance was poorly signified: the interface technically allowed quantity adjustment, but nothing clearly communicated how the planner should perform that action.
 
-The revised interface adds explicit **plus and minus controls** and displays a **live running total**.
+The revised design adds explicit **`+` and `−` controls** as signifiers. These controls communicate where and how the quantity can be changed, while the **live running total provides feedback** after the interaction.
 
-These controls act as signifiers: the user no longer has to infer whether the quantity is editable.
+In other words:
 
-A grouping header was also added above the store-selection area so that the available-store information is perceived as one coherent task rather than as several unrelated numbers and controls.
+- **Affordance:** The quantity can be increased or decreased.
+- **Signifier:** The `+` and `−` controls communicate how to perform that action.
+- **Feedback:** The running total changes to confirm the result of the action.
 
----
+### Screens 2 and 3 Stay on Mission
 
-## 6. Do the Supporting Screens Stay on Mission?
+Both supporting screens are accessed from a specific reference on the priority list.
 
-Yes.
+**Why This Score** only explains the priority of that reference, while **Cover the Gap** only provides actions for resolving its shortage. Neither screen introduces unrelated functionality.
 
-Both **Why This Score** and **Cover the Gap** are accessed from a specific reference on the priority list.
-
-Their information therefore remains anchored to the item the planner is currently evaluating.
-
-The navigation structure follows:
+The navigation therefore remains:
 
 **Today's Run → Specific Reference → Explanation or Action**
 
-All three screens also provide a path back to **Today's Run**, keeping the ranked production list as the central point of the workflow.
+All supporting screens provide a path back to **Today's Run**, keeping the ranked production list as the center of the workflow.
 
----
+### What AI Got Wrong and What Changed
 
-## 7. Before and After
+The initial AI-generated interface provided a useful starting point, but several decisions required human correction:
 
-The initial AI-generated landing page contained the necessary information, but the information had insufficient visual grouping and hierarchy.
+- **Continuity:** AI initially represented the production stages in reverse order, beginning near the finished product. I reordered them to match the physical manufacturing path: **Insumos → Corte → Alfilerado → Confección → Bodega**.
+- **Signifiers:** The store quantity picker allowed adjustment but did not clearly communicate how. I added explicit `+` and `−` controls and live feedback.
+- **Common region:** The initial landing page did not create enough visual separation between different types of information. I grouped the daily summary separately from the ranked production list so the planner's first read moves from overall status to individual priorities.
 
-Important operational information competed for attention because sections were not clearly separated into meaningful visual regions. As a result, the user's eye had fewer cues indicating:
+Each revision was motivated by a specific design question: whether the interface follows the planner's mental model, whether available actions are discoverable, and whether visual grouping communicates the primary capability before detailed reading.
 
-- What should be read first
-- Which information belonged together
-- Which information represented the overall state of the day
-- Where the detailed production list began
-
-The revised design introduces stronger **common region, spacing, hierarchy, and visual separation**.
-
-Summary information is grouped together as the state of the day, while detailed production priorities occupy a distinct region below it. This creates a clearer reading path and directs attention from high-level status to individual production decisions.
-
-### Before / After Comparison
+### Before / After
 
 ![Before and After Design Comparison](uploads/beforeandafter.png)
 
-**Before:** Information was present, but weak grouping and limited visual separation made the landing page feel flatter. Multiple elements competed for attention, making it less obvious where the planner should look first.
+**Before:** The necessary information was present, but weak **common region and visual hierarchy** caused summary information and detailed production information to compete for attention. It was less obvious where the planner should look first or which information belonged together.
 
-**After:** Related information is grouped into distinct visual regions, summary metrics receive stronger hierarchy, and the ranked production list is visually separated from the day's overview. The revised layout creates a more deliberate first read and makes the production priorities easier to scan.
+**After:** Related information is organized into distinct visual regions. The daily summary receives stronger hierarchy, while the ranked production list occupies a separate region below it. This creates a clearer first read:
 
----
+**Daily status → Urgency → Individual production reference**
 
-## 8. What the AI Got Wrong or Oversimplified
-
-AI accelerated the initial interface generation, but several design decisions required human correction.
-
-### Continuity
-
-The first draft represented the production stages in reverse order, beginning near the finished product and moving backward.
-
-That representation did not match the planner's mental model of how production physically progresses.
-
-The sequence was corrected to:
-
-**Insumos → Corte → Alfilerado → Confección → Bodega**
-
-The interface now follows the same direction as the manufacturing process itself.
-
-### Affordance
-
-The store quantity control **affords increasing or decreasing the number of units borrowed from each location**. This action is necessary because the planner may need to combine available inventory from multiple stores to cover a production shortage.
-
-The initial AI design technically supported quantity adjustment, but the affordance was not clearly communicated to the user. A planner looking at the interface could not immediately tell how to change the number of units assigned to each store.
-
-### Signifiers
-
-To make that affordance discoverable, the revised design adds:
-
-- Explicit `+` controls
-- Explicit `−` controls
-- A live running total
-
-The `+` and `−` buttons act as **signifiers**: they communicate where and how the planner can increase or decrease the quantity.
-
-In other words, the **affordance is the ability to adjust the quantity**, while the **signifiers communicate how to perform that adjustment**.
-
-### Common Region
-
-The initial design did not create enough visual separation between related and unrelated information.
-
-The revised design uses clearer containers, spacing, and headers to communicate which information belongs together.
-
-This is particularly important on the landing page, where the summary metrics now function as one visual unit before the planner moves into the detailed priority list.
-
-
-
+The revision was therefore not simply an aesthetic change. It addressed a grouping and signaling problem that directly affected how quickly the planner could understand the screen's primary capability.
 
