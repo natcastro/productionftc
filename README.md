@@ -145,7 +145,7 @@ Within approximately five seconds, a new viewer should be able to recognize that
 
 ---
  
-## 3 Feedback Questions (step 6)
+## 3. Feedback Questions (step 6)
 
 The following questions are designed to test the prototype's assumptions about the **Need, Value, Persona, and Capability**.
 
