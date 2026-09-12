@@ -81,9 +81,10 @@ button { cursor: pointer; }
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--ink-strong);
-  border-radius: 18px;
-  padding: 34px;
+  background: var(--accent);
+  border-radius: 0;
+  margin: -40px -46px 34px;
+  padding: 48px 46px;
   min-height: 320px;
   display: flex;
   align-items: center;
@@ -102,15 +103,15 @@ button { cursor: pointer; }
 .hero-scrim {
   position: absolute; inset: 0;
   pointer-events: none;
-  background: linear-gradient(100deg, rgba(28,36,13,0.92) 0%, rgba(28,36,13,0.78) 30%, rgba(28,36,13,0.32) 60%, rgba(28,36,13,0.05) 82%);
+  background: linear-gradient(100deg, rgba(200,215,149,0.98) 0%, rgba(200,215,149,0.96) 32%, rgba(200,215,149,0.6) 55%, rgba(200,215,149,0.08) 80%);
 }
 .hero-content { position: relative; }
-.hero-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-.hero-title { margin: 12px 0 0; font-size: 38px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; color: #fff; }
-.hero-sub { font-size: 13px; color: rgba(244,247,230,0.85); margin-top: 16px; }
-.hero-stats { position: relative; display: flex; gap: 40px; margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(244,247,230,0.28); }
-.hero-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 34px; font-weight: 500; letter-spacing: -0.03em; color: #fff; }
-.hero-stat-label { font-size: 12.5px; color: rgba(244,247,230,0.75); margin-top: 2px; }
+.hero-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dark); }
+.hero-title { margin: 12px 0 0; font-size: 38px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; color: var(--ink-strong); }
+.hero-sub { font-size: 13px; color: var(--accent-olive); margin-top: 16px; }
+.hero-stats { position: relative; display: flex; gap: 40px; margin-top: 26px; padding-top: 22px; border-top: 1px solid #B4C77E; }
+.hero-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 34px; font-weight: 500; letter-spacing: -0.03em; color: var(--ink-strong); }
+.hero-stat-label { font-size: 12.5px; color: var(--accent-olive); margin-top: 2px; }
 
 .rows { margin-top: 34px; display: flex; flex-direction: column; }
 .group-header { display: flex; align-items: center; gap: 12px; margin: 28px 0 6px; }
@@ -124,13 +125,13 @@ button { cursor: pointer; }
   grid-template-columns: 16px 150px minmax(0,1fr) 180px 90px;
   gap: 0 22px;
   align-items: center;
-  background: transparent;
+  background: #fff;
   border: none;
   border-bottom: 1px solid var(--border-lighter);
   border-radius: 0;
   cursor: pointer;
   transition: background 120ms ease;
-  padding: 16px 4px;
+  padding: 16px 20px;
   width: 100%;
   text-align: left;
   font-family: inherit;
