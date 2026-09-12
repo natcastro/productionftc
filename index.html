@@ -11,18 +11,64 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-dot"></div>
-    <span class="brand-name">Forma Tu Cuerpo · Planeación</span>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Colapsar menú">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="sidebar-brand">FTC Planeación</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item is-active" onclick="ir('lista')" title="Alerta Reposición">
+        <span class="material-symbols-outlined">campaign</span>
+        <span class="nav-label">Alerta Reposición</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">task_alt</span>
+        <span class="nav-label">Cumplimiento OR</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">straighten</span>
+        <span class="nav-label">Detalle por Talla</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span class="nav-label">Reposición por Referencia</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">space_dashboard</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">assignment_return</span>
+        <span class="nav-label">Órdenes de Reposición</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span class="nav-label">Programación</span>
+      </a>
+      <a class="nav-item is-disabled" title="Próximamente">
+        <span class="material-symbols-outlined">summarize</span>
+        <span class="nav-label">Resumen Producción</span>
+      </a>
+    </nav>
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <span class="brand-name">Forma Tu Cuerpo · Planeación</span>
+      </div>
+      <div class="topbar-right">
+        <span class="mono">05:48</span>
+        <span class="sync"><span class="sync-dot"></span>Odoo sincronizado 05:40</span>
+        <div class="avatar">MR</div>
+      </div>
+    </header>
+    <main id="app"></main>
   </div>
-  <div class="topbar-right">
-    <span class="mono">05:48</span>
-    <span class="sync"><span class="sync-dot"></span>Odoo sincronizado 05:40</span>
-    <div class="avatar">MR</div>
-  </div>
-</header>
-<main id="app"></main>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

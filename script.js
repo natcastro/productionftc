@@ -42,8 +42,23 @@ const RAZONES = ['Falta tela o insumo', 'Máquina en mantenimiento', 'Personal i
 
 let state = {
   pantalla: 'lista', idx: 0, fase: 'asignar', modo: 'prestamo',
-  asign: [0, 0, 0], cantidadPlanta: 0, tiempoIdx: 0, razon: '', nota: '', notaGuardada: ''
+  asign: [0, 0, 0], cantidadPlanta: 0, tiempoIdx: 0, razon: '', nota: '', notaGuardada: '',
+  busqueda: '', filtroNivel: 'todos'
 };
+
+function toggleSidebar() {
+  const el = document.getElementById('sidebar');
+  if (el) el.classList.toggle('is-collapsed');
+}
+
+function onSearchInput(el) {
+  state.busqueda = el.value;
+  const pos = el.selectionStart;
+  render();
+  const input = document.getElementById('search-input');
+  if (input) { input.focus(); input.setSelectionRange(pos, pos); }
+}
+function setFiltroNivel(v) { setState({ filtroNivel: v }); }
 
 function setState(patch) {
   Object.assign(state, patch);
@@ -83,12 +98,24 @@ function computeCuenta() {
   return cuenta;
 }
 
+function filtrarDatos() {
+  const q = state.busqueda.trim().toLowerCase();
+  return DATOS.map((d, i) => Object.assign({}, d, { _i: i })).filter((d) => {
+    if (state.filtroNivel !== 'todos' && d.nivel !== state.filtroNivel) return false;
+    if (!q) return true;
+    return (d.ref + ' ' + d.motivo + ' ' + d.linea + ' ' + d.plan).toLowerCase().includes(q);
+  });
+}
+
 function renderLista() {
   const cuenta = computeCuenta();
   const unidades = DATOS.reduce((a, d) => a + Math.max(0, d.minimo - d.existencias), 0);
+  const filtradas = filtrarDatos();
 
   let visto = null;
-  const rowsHtml = DATOS.map((d, i) => {
+  const rowsHtml = filtradas.length === 0
+    ? `<div class="lista-vacia">No hay referencias que coincidan con la búsqueda o el filtro.</div>`
+    : filtradas.map((d) => {
     const nuevo = d.nivel !== visto;
     visto = d.nivel;
     let html = '';
@@ -97,11 +124,11 @@ function renderLista() {
         <div class="group-header">
           <span class="group-label level-${d.nivel}">${esc(N[d.nivel].grupo)}</span>
           <span class="group-line"></span>
-          <span class="group-count">${cuenta[d.nivel]} referencias</span>
+          <span class="group-count">${filtradas.filter((x) => x.nivel === d.nivel).length} referencias</span>
         </div>`;
     }
     html += `
-      <button class="row level-${d.nivel}" onclick="ir('detalle', ${i})">
+      <button class="row level-${d.nivel}" onclick="ir('detalle', ${d._i})">
         <div>
           <div class="row-ref">${esc(d.ref)}</div>
           <div class="row-sub">Talla ${esc(d.talla)} · ${esc(d.linea)}</div>
@@ -132,20 +159,34 @@ function renderLista() {
           <h1 class="hero-title">Esto corre hoy, en orden.</h1>
           <div class="hero-sub">insumos → corte → alfilerado → confección → bodega</div>
           <div class="hero-stats">
-            <div>
+            <div class="hero-stat">
               <div class="hero-stat-num">${cuenta.critico}</div>
               <div class="hero-stat-label">críticas</div>
             </div>
-            <div>
+            <div class="hero-stat">
               <div class="hero-stat-num">${cuenta.atencion}</div>
               <div class="hero-stat-label">en atención</div>
             </div>
-            <div>
+            <div class="hero-stat">
               <div class="hero-stat-num">${unidades}</div>
               <div class="hero-stat-label">unidades faltantes</div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="material-symbols-outlined">search</span>
+          <input id="search-input" class="search-input" type="text" placeholder="Buscar por REF, motivo, línea o canal..." value="${esc(state.busqueda)}" oninput="onSearchInput(this)" />
+        </div>
+        <select class="filter-select" onchange="setFiltroNivel(this.value)">
+          <option value="todos" ${state.filtroNivel === 'todos' ? 'selected' : ''}>Todos los niveles</option>
+          <option value="critico" ${state.filtroNivel === 'critico' ? 'selected' : ''}>Crítico</option>
+          <option value="atencion" ${state.filtroNivel === 'atencion' ? 'selected' : ''}>Atención</option>
+          <option value="holgado" ${state.filtroNivel === 'holgado' ? 'selected' : ''}>Holgado</option>
+        </select>
+        <span class="filter-count">${filtradas.length} de ${DATOS.length} referencias</span>
       </div>
 
       <div class="rows">${rowsHtml}</div>
