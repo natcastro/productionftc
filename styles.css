@@ -158,7 +158,7 @@ button { cursor: pointer; }
 }
 .back-link:hover { color: oklch(0.28 0.01 120); }
 
-.detail-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: 32px; align-items: start; }
+.detail-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: 32px; align-items: stretch; }
 .detail-header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .detail-title { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 42px; line-height: 1; letter-spacing: -0.035em; font-weight: 600; }
 .detail-talla { font-size: 22px; color: oklch(0.4 0.012 120); }
@@ -193,20 +193,24 @@ button { cursor: pointer; }
 .field-key { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; color: oklch(0.58 0.01 120); text-transform: uppercase; }
 .field-val { font-size: 14.5px; margin-top: 4px; }
 
-.side-card { background: #fff; border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden; position: sticky; top: 22px; }
+.side-card {
+  background: #fff; border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden;
+  position: sticky; top: 22px; margin-top: 76px;
+  display: flex; flex-direction: column;
+}
 .side-header { background: var(--accent); padding: 24px 28px 22px; }
 .side-header-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dark); }
 .side-score-row { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; }
 .side-score { font-family: 'JetBrains Mono', monospace; font-size: 54px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink-strong); }
 .side-puesto { font-size: 13.5px; color: var(--accent-olive); white-space: nowrap; }
-.side-body { padding: 6px 28px 22px; }
+.side-body { padding: 6px 28px 22px; display: flex; flex-direction: column; flex: 1; }
 .breakdown-item { padding: 15px 0; border-bottom: 1px solid var(--border-lighter); }
 .breakdown-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .breakdown-factor { font-size: 14px; font-weight: 500; }
 .breakdown-points { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
 .breakdown-razon { font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
 .btn-accion {
-  margin-top: 20px; text-align: center; padding: 14px 18px; border-radius: 11px;
+  margin-top: auto; text-align: center; padding: 14px 18px; border-radius: 11px;
   background: var(--btn-bg); color: var(--btn-text); font-size: 14.5px; font-weight: 500;
   transition: background 140ms ease; border: none; width: 100%; font-family: inherit;
 }
