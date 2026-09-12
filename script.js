@@ -102,7 +102,6 @@ function renderLista() {
     }
     html += `
       <button class="row level-${d.nivel}" onclick="ir('detalle', ${i})">
-        <span class="row-dot"></span>
         <div>
           <div class="row-ref">${esc(d.ref)}</div>
           <div class="row-sub">Talla ${esc(d.talla)} · ${esc(d.linea)}</div>
