@@ -333,17 +333,23 @@ The sequence was corrected to:
 
 The interface now follows the same direction as the manufacturing process itself.
 
+### Affordance
+
+The store quantity control **affords increasing or decreasing the number of units borrowed from each location**. This action is necessary because the planner may need to combine available inventory from multiple stores to cover a production shortage.
+
+The initial AI design technically supported quantity adjustment, but the affordance was not clearly communicated to the user. A planner looking at the interface could not immediately tell how to change the number of units assigned to each store.
+
 ### Signifiers
 
-The initial store-borrowing quantity picker did not provide a clear visual indication that quantities could be changed.
-
-The revised design adds:
+To make that affordance discoverable, the revised design adds:
 
 - Explicit `+` controls
 - Explicit `−` controls
 - A live running total
 
-The interaction is now discoverable rather than requiring the user to guess.
+The `+` and `−` buttons act as **signifiers**: they communicate where and how the planner can increase or decrease the quantity.
+
+In other words, the **affordance is the ability to adjust the quantity**, while the **signifiers communicate how to perform that adjustment**.
 
 ### Common Region
 
@@ -352,9 +358,6 @@ The initial design did not create enough visual separation between related and u
 The revised design uses clearer containers, spacing, and headers to communicate which information belongs together.
 
 This is particularly important on the landing page, where the summary metrics now function as one visual unit before the planner moves into the detailed priority list.
-
----
-
 
 
 
