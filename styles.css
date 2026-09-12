@@ -151,7 +151,7 @@ button { cursor: pointer; }
 .lista-footnote { margin-top: 22px; font-size: 12.5px; color: var(--muted); }
 
 /* Detalle */
-.page-detalle { padding: 30px 46px 90px; }
+.page-detalle { max-width: 1360px; margin: 0 auto; padding: 30px 46px 90px; }
 .back-link {
   display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted);
   cursor: pointer; margin-bottom: 28px; background: none; border: none; font-family: inherit; padding: 0;
@@ -213,7 +213,7 @@ button { cursor: pointer; }
 .btn-accion:hover { background: var(--btn-bg-hover); }
 
 /* Accion */
-.page-accion { padding: 30px 46px 90px; }
+.page-accion { max-width: 1040px; margin: 0 auto; padding: 30px 46px 90px; }
 .accion-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 14px; }
 .accion-title { margin: 0 0 34px; font-size: 36px; line-height: 1.12; letter-spacing: -0.03em; font-weight: 600; max-width: 24ch; }
 .accion-title.sm { font-size: 34px; margin-bottom: 30px; }
