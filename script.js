@@ -91,8 +91,6 @@ function renderLista() {
   const rowsHtml = DATOS.map((d, i) => {
     const nuevo = d.nivel !== visto;
     visto = d.nivel;
-    const crit = d.nivel === 'critico';
-    const faltan = Math.max(0, d.minimo - d.existencias);
     let html = '';
     if (nuevo) {
       html += `
@@ -103,9 +101,9 @@ function renderLista() {
         </div>`;
     }
     html += `
-      <button class="row level-${d.nivel}${crit ? ' is-critico' : ''}" onclick="ir('detalle', ${i})">
-        <div class="row-bar"></div>
-        <div class="row-main">
+      <button class="row level-${d.nivel}" onclick="ir('detalle', ${i})">
+        <span class="row-dot"></span>
+        <div>
           <div class="row-ref">${esc(d.ref)}</div>
           <div class="row-sub">Talla ${esc(d.talla)} · ${esc(d.linea)}</div>
         </div>
@@ -113,7 +111,7 @@ function renderLista() {
           <div class="row-motivo">${esc(d.motivo)}</div>
           <div class="row-meta">EXISTENCIAS_APP ${d.existencias} · MÍNIMO ${d.minimo}</div>
         </div>
-        <div class="row-restante-wrap">
+        <div>
           <div class="row-restante">${esc(d.restante)}</div>
           <div class="row-plan">${esc(d.plan)}</div>
         </div>
