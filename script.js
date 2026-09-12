@@ -110,6 +110,7 @@ function filtrarDatos() {
 function renderLista() {
   const cuenta = computeCuenta();
   const unidades = DATOS.reduce((a, d) => a + Math.max(0, d.minimo - d.existencias), 0);
+  const cumplimiento = Math.round((cuenta.holgado / DATOS.length) * 100);
   const filtradas = filtrarDatos();
 
   let visto = null;
@@ -155,9 +156,11 @@ function renderLista() {
         <div class="hero-bg"></div>
         <div class="hero-scrim"></div>
         <div class="hero-content">
-          <div class="hero-date">Martes 11 de septiembre</div>
-          <h1 class="hero-title">Esto corre hoy, en orden.</h1>
-          <div class="hero-sub">insumos → corte → alfilerado → confección → bodega</div>
+          <div>
+            <div class="hero-date">Martes 11 de septiembre</div>
+            <h1 class="hero-title">Esto corre hoy, en orden.</h1>
+            <div class="hero-sub">insumos → corte → alfilerado → confección → bodega</div>
+          </div>
           <div class="hero-stats">
             <div class="hero-stat">
               <div class="hero-stat-num">${cuenta.critico}</div>
@@ -170,6 +173,10 @@ function renderLista() {
             <div class="hero-stat">
               <div class="hero-stat-num">${unidades}</div>
               <div class="hero-stat-label">unidades faltantes</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">${cumplimiento}%</div>
+              <div class="hero-stat-label">cumplimiento a tiempo</div>
             </div>
           </div>
         </div>
