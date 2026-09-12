@@ -131,7 +131,7 @@ It closes the loop between identifying a problem and resolving it.
 
 ---
 
-## 3. Why These Three Screens — and Nothing Else
+## . Why These Three Screens — and Nothing Else
 
 The three screens represent the entire operational loop:
 
@@ -144,6 +144,89 @@ Including them would compete with the core narrative rather than strengthen it.
 Within approximately five seconds, a new viewer should be able to recognize that this is a **manufacturing production-prioritization tool**, rather than a generic administrative dashboard.
 
 ---
+ 
+## 3 Feedback Questions (step 6)
+
+The following questions are designed to test the prototype's assumptions about the **Need, Value, Persona, and Capability**.
+
+## Need
+
+### Question
+
+> "Walk me through the last time you had to figure out what to run first thing in the morning. What did you actually end up doing?"
+
+### Prediction
+
+The planner will describe manually opening the Odoo shortfall information and cross-referencing inventory levels, shortages, and production status to determine what needs to run.
+
+They may also mention that this process consumes part of the limited early-morning planning window.
+
+### What This Tests
+
+This question tests whether the assumed problem actually occurs in the planner's real workflow and whether the manual cross-reference is significant enough to justify the prototype.
+
+---
+
+## Value
+
+### Question
+
+> "If you never had to do that manual check again, what's the one or two words that come to mind for what that gives you?"
+
+### Prediction
+
+The response will likely relate to:
+
+- Time
+- Certainty
+- Confidence
+- Peace of mind
+
+### What This Tests
+
+This tests whether the proposed fundamental value — **certainty and speed of decision** — matches the value the planner actually experiences.
+
+---
+
+## Persona
+
+### Question
+
+> "How often does this shortfall check come up for you, and what are you usually juggling right before or after it?"
+
+### Prediction
+
+The planner will likely describe the task as occurring daily, often after receiving updated information about missing orders, while also preparing or adjusting plant-floor production schedules.
+
+### What This Tests
+
+This validates whether the selected persona actually experiences the time pressure and task-switching assumed by the prototype.
+
+---
+
+## Capability
+
+### Question
+
+> "I'm going to show you this screen for five seconds, then hide it. What does this tool do?"
+
+**Screen shown:** Today's Run
+
+### Prediction
+
+The planner should respond with something similar to:
+
+> "It tells me what is most urgent to produce today."
+
+The response should focus on the purpose of the tool rather than individual fields, numbers, or interface components.
+
+### What This Tests
+
+This directly evaluates whether the interface communicates its core capability at first glance.
+
+If the planner can identify the purpose after five seconds, the visual hierarchy and signaling are working. If they instead describe isolated metrics or cannot determine the purpose, the landing screen needs further refinement.
+
+
 
 ## 4. Design Read: Grouping, Signaling, and Gestalt Principles
 
@@ -292,112 +375,7 @@ This is particularly important on the landing page, where the summary metrics no
 
 ---
 
-# Feedback Questions
 
-The following questions are designed to test the prototype's assumptions about the **Need, Value, Persona, and Capability**.
 
-## Need
 
-### Question
 
-> "Walk me through the last time you had to figure out what to run first thing in the morning. What did you actually end up doing?"
-
-### Prediction
-
-The planner will describe manually opening the Odoo shortfall information and cross-referencing inventory levels, shortages, and production status to determine what needs to run.
-
-They may also mention that this process consumes part of the limited early-morning planning window.
-
-### What This Tests
-
-This question tests whether the assumed problem actually occurs in the planner's real workflow and whether the manual cross-reference is significant enough to justify the prototype.
-
----
-
-## Value
-
-### Question
-
-> "If you never had to do that manual check again, what's the one or two words that come to mind for what that gives you?"
-
-### Prediction
-
-The response will likely relate to:
-
-- Time
-- Certainty
-- Confidence
-- Peace of mind
-
-### What This Tests
-
-This tests whether the proposed fundamental value — **certainty and speed of decision** — matches the value the planner actually experiences.
-
----
-
-## Persona
-
-### Question
-
-> "How often does this shortfall check come up for you, and what are you usually juggling right before or after it?"
-
-### Prediction
-
-The planner will likely describe the task as occurring daily, often after receiving updated information about missing orders, while also preparing or adjusting plant-floor production schedules.
-
-### What This Tests
-
-This validates whether the selected persona actually experiences the time pressure and task-switching assumed by the prototype.
-
----
-
-## Capability
-
-### Question
-
-> "I'm going to show you this screen for five seconds, then hide it. What does this tool do?"
-
-**Screen shown:** Today's Run
-
-### Prediction
-
-The planner should respond with something similar to:
-
-> "It tells me what is most urgent to produce today."
-
-The response should focus on the purpose of the tool rather than individual fields, numbers, or interface components.
-
-### What This Tests
-
-This directly evaluates whether the interface communicates its core capability at first glance.
-
-If the planner can identify the purpose after five seconds, the visual hierarchy and signaling are working. If they instead describe isolated metrics or cannot determine the purpose, the landing screen needs further refinement.
-
----
-
-## Design Summary
-
-| Design Principle | Application in Prototype |
-|---|---|
-| **Common Region** | Summary metrics and related controls are visually grouped into meaningful units. |
-| **Similarity** | Production references within the same urgency category share consistent visual treatment. |
-| **Continuity** | Production stages follow the physical manufacturing sequence from inputs to warehouse. |
-| **Signifiers** | Plus/minus controls communicate that store-transfer quantities are adjustable. |
-| **Visual Hierarchy** | Daily status appears before detailed production records. |
-| **First Read** | The landing screen communicates what requires attention before individual references are inspected. |
-
----
-
-## Prototype Outcome
-
-The final prototype is designed around one operational question:
-
-> **What should production run first today?**
-
-Every major screen supports that question:
-
-1. **Today's Run** identifies the priority.
-2. **Why This Score** explains the recommendation.
-3. **Cover the Gap** provides a path to action.
-
-The result is a focused workflow intended to replace repeated manual cross-referencing with a faster, more explainable production-prioritization decision.
