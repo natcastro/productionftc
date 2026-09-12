@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,200,0,0" rel="stylesheet">
+<style>
+  body { margin:0; background: #FAFBF2; }
+  a { color: #4A5A22; text-decoration: none; }
+  a:hover { color: #33401A; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="font-family:'Instrument Sans',Helvetica,sans-serif;color:oklch(0.25 0.012 120);min-height:100vh;background:#FAFBF2;">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 46px;border-bottom:1px solid oklch(0.93 0.008 120);background:#fff;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:22px;height:22px;border-radius:7px;background:#C8D795;"></div>
+      <span style="font-weight:600;letter-spacing:-0.01em;">Forma Tu Cuerpo · Planeación</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:13px;color:oklch(0.48 0.01 120);">
+      <span style="font-family:'JetBrains Mono',monospace;">05:48</span>
+      <span style="display:flex;align-items:center;gap:7px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.12 150);"></span>Odoo sincronizado 05:40</span>
+      <div style="width:30px;height:30px;border-radius:50%;background:#EFF3DC;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#4A5A22;">MR</div>
+    </div>
+  </div>
+
+  <sc-if value="{{ enLista }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1240px;margin:0 auto;padding:40px 46px 80px;">
+
+    <div style="position:relative;overflow:hidden;background:#C8D795;border-radius:18px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <div style="position:absolute;right:0;top:0;bottom:0;width:50%;pointer-events:none;background-image:url('assets/faja-grupo-2.png');background-repeat:no-repeat;background-size:auto 122%;background-position:68% 22%;-webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.65) 42%, #000 78%);mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.65) 42%, #000 78%);"></div>
+      <div style="position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4A5A22;">Martes 11 de septiembre</div>
+        <h1 style="margin:12px 0 0;font-size:38px;line-height:1.05;letter-spacing:-0.03em;font-weight:600;color:#2E3A14;">Esto corre hoy, en orden.</h1>
+        <div style="font-size:13px;color:#54632C;margin-top:16px;">insumos → corte → alfilerado → confección → bodega</div>
+      <div style="position:relative;display:flex;gap:40px;margin-top:26px;padding-top:22px;border-top:1px solid #B4C77E;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;letter-spacing:-0.03em;color:#2E3A14;">{{ nCriticas }}</div>
+          <div style="font-size:12.5px;color:#54632C;margin-top:2px;">críticas</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;letter-spacing:-0.03em;color:#2E3A14;">{{ nAtencion }}</div>
+          <div style="font-size:12.5px;color:#54632C;margin-top:2px;">en atención</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;letter-spacing:-0.03em;color:#2E3A14;">{{ unidades }}</div>
+          <div style="font-size:12.5px;color:#54632C;margin-top:2px;">unidades faltantes</div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div style="margin-top:34px;display:flex;flex-direction:column;gap:10px;">
+      <sc-for list="{{ filas }}" as="f" hint-placeholder-count="8">
+        <div>
+          <sc-if value="{{ f.abreGrupo }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:12px;margin:22px 0 12px;">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.01em;color:{{ f.tinta }};">{{ f.grupo }}</span>
+              <span style="flex:1;height:1px;background:oklch(0.93 0.008 120);"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:oklch(0.52 0.01 120);">{{ f.grupoCuenta }}</span>
+            </div>
+          </sc-if>
+          <div onClick="{{ f.abrir }}" style="display:grid;grid-template-columns:8px 148px minmax(0,1fr) 190px 132px;gap:0 26px;align-items:center;background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:14px;overflow:hidden;cursor:pointer;transition:box-shadow 160ms ease,transform 160ms ease;padding-right:26px;min-height:{{ f.alto }};" style-hover="box-shadow:0 4px 18px oklch(0.5 0.02 140 / 0.09);transform:translateY(-1px);">
+            <div style="align-self:stretch;background:{{ f.color }};"></div>
+            <div style="padding:18px 0 18px 4px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:{{ f.refSize }};font-weight:600;letter-spacing:-0.01em;">{{ f.ref }}</div>
+              <div style="font-size:13px;color:oklch(0.5 0.01 120);margin-top:3px;">Talla {{ f.talla }} · {{ f.linea }}</div>
+            </div>
+            <div style="padding:18px 0;min-width:0;">
+              <div style="font-size:{{ f.motivoSize }};font-weight:500;letter-spacing:-0.01em;color:oklch(0.23 0.012 120);text-wrap:pretty;">{{ f.motivo }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:oklch(0.52 0.01 120);margin-top:5px;">EXISTENCIAS_APP {{ f.existencias }} · MÍNIMO {{ f.minimo }}</div>
+            </div>
+            <div style="padding:18px 0;">
+              <div style="font-size:14px;font-weight:500;color:{{ f.tinta }};">{{ f.restante }}</div>
+              <div style="font-size:12.5px;color:oklch(0.5 0.01 120);margin-top:3px;">{{ f.plan }}</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:18px 0;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:{{ f.scoreSize }};font-weight:500;letter-spacing:-0.03em;color:{{ f.tinta }};">{{ f.puntaje }}</span>
+              <span style="color:oklch(0.74 0.01 120);font-size:15px;">→</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:26px;font-size:12.5px;color:oklch(0.52 0.01 120);">Puntaje 0–200+: combina etapa de producción, urgencia del pedido y brecha contra NIVEL MINIMO.</div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ enDetalle }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:1180px;margin:0 auto;padding:30px 46px 90px;">
+    <div onClick="{{ volver }}" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:oklch(0.48 0.01 120);cursor:pointer;margin-bottom:28px;" style-hover="color:oklch(0.28 0.01 120);">← Prioridad del día</div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start;">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+          <h1 style="margin:0;font-family:'JetBrains Mono',monospace;font-size:42px;line-height:1;letter-spacing:-0.035em;font-weight:600;">{{ sel.ref }}</h1>
+          <span style="font-size:22px;color:oklch(0.4 0.012 120);">Talla {{ sel.talla }}</span>
+          <span style="padding:5px 11px;border-radius:999px;background:{{ sel.tenue }};color:{{ sel.tinta }};font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;">{{ sel.nivel }}</span>
+        </div>
+
+        <div style="margin-top:26px;background:{{ sel.tenue }};border:1px solid {{ sel.borde }};border-radius:16px;padding:26px 28px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:{{ sel.tinta }};">Por qué es urgente</div>
+          <div style="font-size:24px;line-height:1.3;font-weight:500;letter-spacing:-0.02em;margin-top:12px;max-width:34ch;text-wrap:pretty;">{{ sel.motivoLargo }}</div>
+          <div style="display:flex;gap:34px;margin-top:22px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:{{ sel.tinta }};">{{ sel.restante }}</div>
+              <div style="font-size:12.5px;color:oklch(0.45 0.01 120);margin-top:3px;">para despacho · {{ sel.limite }}</div>
+            </div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;">{{ sel.faltan }}</div>
+              <div style="font-size:12.5px;color:oklch(0.45 0.01 120);margin-top:3px;">unidades bajo NIVEL MINIMO</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;padding:24px 28px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.55 0.01 120);margin-bottom:18px;">Ruta de producción · insumos → bodega</div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);">
+            <sc-for list="{{ ruta }}" as="paso" hint-placeholder-count="5">
+              <div style="padding-right:14px;">
+                <div style="height:4px;border-radius:2px;background:{{ paso.barra }};margin-bottom:11px;"></div>
+                <div style="font-size:13.5px;font-weight:{{ paso.peso }};color:{{ paso.texto }};">{{ paso.nombre }}</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:oklch(0.55 0.01 120);margin-top:4px;">{{ paso.detalle }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;padding:24px 28px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.55 0.01 120);margin-bottom:16px;">Datos de Odoo</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px 24px;">
+            <sc-for list="{{ campos }}" as="c" hint-placeholder-count="8">
+              <div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:oklch(0.58 0.01 120);text-transform:uppercase;">{{ c.k }}</div>
+                <div style="font-size:14.5px;margin-top:4px;">{{ c.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;overflow:hidden;position:sticky;top:22px;">
+        <div style="background:#C8D795;padding:24px 28px 22px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#4A5A22;">Puntaje de prioridad</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:8px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:54px;font-weight:500;letter-spacing:-0.04em;line-height:1;color:#2E3A14;">{{ sel.puntaje }}</span>
+            <span style="font-size:13.5px;color:#54632C;white-space:nowrap;">{{ sel.puestoTexto }}</span>
+          </div>
+        </div>
+        <div style="padding:6px 28px 22px;">
+          <sc-for list="{{ desglose }}" as="d" hint-placeholder-count="3">
+            <div style="padding:15px 0;border-bottom:1px solid oklch(0.96 0.006 120);">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;">
+                <span style="font-size:14px;font-weight:500;">{{ d.factor }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:14px;">+{{ d.puntos }}</span>
+              </div>
+              <div style="font-size:12.5px;color:oklch(0.52 0.01 120);margin-top:4px;line-height:1.45;">{{ d.razon }}</div>
+            </div>
+          </sc-for>
+          <div onClick="{{ irAccion }}" style="margin-top:20px;text-align:center;padding:14px 18px;border-radius:11px;background:#3B4A1C;color:#F4F7E6;font-size:14.5px;font-weight:500;cursor:pointer;transition:background 140ms ease;" style-hover="background:#2A3612;">Ver opciones de acción</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ enAccion }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:960px;margin:0 auto;padding:30px 46px 90px;">
+    <div onClick="{{ volverDetalle }}" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:oklch(0.48 0.01 120);cursor:pointer;margin-bottom:32px;" style-hover="color:oklch(0.28 0.01 120);">← <span>{{ sel.etiquetaCorta }}</span></div>
+
+    <sc-if value="{{ faseAsignar }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.55 0.01 120);margin-bottom:14px;">{{ sel.linea }} · REF {{ sel.ref }} · TALLA {{ sel.talla }}</div>
+        <h1 style="margin:0 0 34px;font-size:36px;line-height:1.12;letter-spacing:-0.03em;font-weight:600;max-width:24ch;">Faltan {{ sel.faltan }} unidades. Decide de dónde salen.</h1>
+
+        <div style="background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;overflow:hidden;">
+          <div style="padding:20px 28px 4px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.55 0.01 120);">Préstamo entre tiendas</div>
+          <sc-for list="{{ tiendas }}" as="t" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:minmax(0,1.5fr) 100px 150px 72px;gap:16px;align-items:center;padding:18px 28px;border-bottom:1px solid oklch(0.96 0.006 120);">
+              <div>
+                <div style="font-size:16px;font-weight:600;letter-spacing:-0.01em;">{{ t.tienda }}</div>
+                <div style="font-size:12.5px;color:oklch(0.52 0.01 120);margin-top:4px;">{{ t.nota }}</div>
+              </div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:oklch(0.5 0.01 120);">{{ t.disponibles }} disp.</div>
+              <div style="display:flex;align-items:center;justify-content:flex-end;gap:4px;border:1px solid oklch(0.92 0.008 120);border-radius:10px;padding:4px;">
+                <div onClick="{{ t.menos }}" style="width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px;color:oklch(0.42 0.012 120);cursor:pointer;user-select:none;" style-hover="background:oklch(0.96 0.01 120);">−</div>
+                <div style="flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;">{{ t.cantidad }}</div>
+                <div onClick="{{ t.mas }}" style="width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px;color:oklch(0.42 0.012 120);cursor:pointer;user-select:none;" style-hover="background:oklch(0.96 0.01 120);">+</div>
+              </div>
+              <div onClick="{{ t.accionTodo }}" style="text-align:center;font-size:13px;color:#4A5A22;cursor:pointer;padding:8px 6px;border-radius:8px;" style-hover="background:#EFF3DC;">{{ t.etiquetaTodo }}</div>
+            </div>
+          </sc-for>
+          <div style="padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:220px;">
+              <div style="display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px;">
+                <span style="font-weight:500;">{{ textoAsignado }}</span>
+                <span style="color:oklch(0.52 0.01 120);font-family:'JetBrains Mono',monospace;">{{ textoPendiente }}</span>
+              </div>
+              <div style="height:6px;border-radius:3px;background:oklch(0.94 0.008 120);overflow:hidden;">
+                <div style="height:6px;border-radius:3px;background:#A9C263;width:{{ anchoBarra }};transition:width 200ms ease;"></div>
+              </div>
+            </div>
+            <div onClick="{{ enviarSolicitud }}" style="padding:15px 26px;border-radius:12px;background:{{ fondoEnviar }};color:{{ tintaEnviar }};font-size:15px;font-weight:600;letter-spacing:-0.01em;cursor:{{ cursorEnviar }};transition:background 140ms ease;" style-hover="background:#2A3612;">{{ etiquetaEnviar }}</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:14px;margin:26px 0;">
+          <span style="flex:1;height:1px;background:oklch(0.93 0.008 120);"></span>
+          <span style="font-size:12.5px;color:oklch(0.55 0.01 120);">o prodúcela en planta</span>
+          <span style="flex:1;height:1px;background:oklch(0.93 0.008 120);"></span>
+        </div>
+
+        <div style="background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;padding:22px 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.55 0.01 120);margin-bottom:10px;">Cantidad a producir</div>
+            <div style="display:flex;align-items:center;gap:4px;border:1px solid oklch(0.92 0.008 120);border-radius:10px;padding:4px;width:150px;">
+              <div onClick="{{ plantaMenos }}" style="width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px;color:oklch(0.42 0.012 120);cursor:pointer;user-select:none;" style-hover="background:oklch(0.96 0.01 120);">−</div>
+              <input value="{{ cantidadPlanta }}" onChange="{{ escribirPlanta }}" style="flex:1;width:100%;min-width:0;text-align:center;border:none;outline:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:oklch(0.25 0.012 120);" />
+              <div onClick="{{ plantaMas }}" style="width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px;color:oklch(0.42 0.012 120);cursor:pointer;user-select:none;" style-hover="background:oklch(0.96 0.01 120);">+</div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:260px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.55 0.01 120);margin-bottom:10px;">Tiempo estimado</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <sc-for list="{{ tiempos }}" as="op" hint-placeholder-count="3">
+                <div onClick="{{ op.elegir }}" style="padding:10px 14px;border-radius:10px;border:1px solid {{ op.borde }};background:{{ op.fondo }};font-size:13.5px;color:{{ op.tinta }};cursor:pointer;transition:background 140ms ease;">{{ op.etiqueta }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div onClick="{{ marcarCurso }}" style="padding:14px 22px;border-radius:12px;border:1px solid oklch(0.89 0.012 120);background:#fff;font-size:14.5px;font-weight:500;color:oklch(0.3 0.012 120);cursor:pointer;white-space:nowrap;transition:background 140ms ease;" style-hover="background:oklch(0.97 0.008 120);">Marcar en curso</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ faseSeguimiento }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.55 0.01 120);margin-bottom:14px;">{{ sel.ref }} · TALLA {{ sel.talla }}</div>
+        <h1 style="margin:0 0 30px;font-size:34px;line-height:1.12;letter-spacing:-0.03em;font-weight:600;max-width:24ch;">{{ tituloSeguimiento }}</h1>
+
+        <div style="background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;overflow:hidden;">
+          <div style="background:#EFF3DC;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#4A5A22;">Listo estimado</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:500;letter-spacing:-0.03em;color:#2E3A14;margin-top:6px;">{{ listoEstimado }}</div>
+            </div>
+            <div style="font-size:13.5px;color:oklch(0.36 0.05 140);max-width:34ch;line-height:1.5;">{{ avisoTexto }}</div>
+          </div>
+          <sc-for list="{{ resumen }}" as="r" hint-placeholder-count="3">
+            <div style="display:flex;justify-content:space-between;gap:20px;padding:16px 28px;border-bottom:1px solid oklch(0.96 0.006 120);font-size:14.5px;">
+              <span style="color:oklch(0.45 0.01 120);">{{ r.k }}</span>
+              <span style="font-weight:500;">{{ r.v }}</span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ hayNota }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:18px 28px;background:oklch(0.975 0.025 85);border-bottom:1px solid oklch(0.96 0.006 120);">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.47 0.11 65);">Novedad registrada</div>
+              <div style="font-size:14px;margin-top:7px;line-height:1.5;">{{ notaTexto }}</div>
+            </div>
+          </sc-if>
+          <div style="padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+            <div onClick="{{ abrirNovedad }}" style="font-size:13.5px;color:oklch(0.45 0.01 120);cursor:pointer;text-decoration:underline;text-underline-offset:3px;" style-hover="color:oklch(0.28 0.01 120);">Registrar novedad o retraso</div>
+            <div onClick="{{ marcarListo }}" style="padding:14px 24px;border-radius:12px;background:#3B4A1C;color:#F4F7E6;font-size:15px;font-weight:600;cursor:pointer;transition:background 140ms ease;" style-hover="background:#2A3612;">Marcar como listo</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ faseNovedad }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <h1 style="margin:0 0 28px;font-size:32px;line-height:1.14;letter-spacing:-0.03em;font-weight:600;max-width:24ch;">¿Por qué no quedó lista a tiempo?</h1>
+        <div style="background:#fff;border:1px solid oklch(0.94 0.008 120);border-radius:16px;padding:24px 28px;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <sc-for list="{{ razones }}" as="r" hint-placeholder-count="4">
+              <div onClick="{{ r.elegir }}" style="padding:10px 14px;border-radius:10px;border:1px solid {{ r.borde }};background:{{ r.fondo }};font-size:13.5px;color:{{ r.tinta }};cursor:pointer;">{{ r.etiqueta }}</div>
+            </sc-for>
+          </div>
+          <textarea onChange="{{ escribirNota }}" placeholder="Detalle para el equipo de planta (opcional)" style="margin-top:18px;width:100%;min-height:96px;border:1px solid oklch(0.92 0.008 120);border-radius:12px;padding:14px 16px;font-family:'Instrument Sans',sans-serif;font-size:14px;color:oklch(0.25 0.012 120);resize:vertical;outline:none;"></textarea>
+          <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:20px;">
+            <div onClick="{{ cancelarNovedad }}" style="font-size:13.5px;color:oklch(0.5 0.01 120);cursor:pointer;">Cancelar</div>
+            <div onClick="{{ guardarNovedad }}" style="padding:13px 22px;border-radius:12px;background:#3B4A1C;color:#F4F7E6;font-size:14.5px;font-weight:500;cursor:pointer;">Guardar novedad</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ faseSolucionado }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="background:oklch(0.96 0.04 150);border:1px solid oklch(0.9 0.055 150);border-radius:18px;padding:38px 34px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.4 0.09 150);">Solucionado</div>
+          <h1 style="margin:14px 0 0;font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:600;color:oklch(0.25 0.07 150);max-width:22ch;">{{ tituloSolucionado }}</h1>
+          <div style="font-size:14.5px;color:oklch(0.38 0.05 150);margin-top:14px;">{{ detalleSolucionado }}</div>
+        </div>
+        <div onClick="{{ volver }}" style="margin-top:22px;display:inline-block;padding:14px 24px;border-radius:12px;background:#3B4A1C;color:#F4F7E6;font-size:15px;font-weight:600;cursor:pointer;" style-hover="background:#2A3612;">Volver a la prioridad del día</div>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const N = {
+  critico: { color: 'oklch(0.68 0.15 25)', tenue: 'oklch(0.965 0.028 25)', borde: 'oklch(0.91 0.05 30)', tinta: 'oklch(0.5 0.14 25)', nivel: 'Crítico', grupo: 'Crítico · corre en el primer turno' },
+  atencion: { color: 'oklch(0.8 0.12 75)', tenue: 'oklch(0.97 0.032 85)', borde: 'oklch(0.92 0.05 85)', tinta: 'oklch(0.47 0.11 65)', nivel: 'Atención', grupo: 'Atención · programar esta semana' },
+  holgado: { color: 'oklch(0.76 0.11 150)', tenue: 'oklch(0.97 0.03 150)', borde: 'oklch(0.92 0.045 150)', tinta: 'oklch(0.43 0.1 150)', nivel: 'Holgado', grupo: 'Holgado · puede esperar' }
+};
+
+const DATOS = [
+  { ref: 'C-013', talla: 'L', linea: 'LINEA B', rotacion: 'A', existencias: 0, minimo: 80, maximo: 200, corte: 'OR-2-C-013L', fechaCorte: '09/09/2026', planeada: 120, plan: 'TikTok USA', etapa: 'Confección', etapaIdx: 3, canal: 'TikTok USA', restante: '4 h 10 m', limite: 'hoy 10:00', puntaje: 196, nivel: 'critico',
+    motivo: 'Sin existencia y con pedido TikTok USA activo', motivoLargo: 'Existencia en cero con un pedido de TikTok USA que vence en 4 horas.' },
+  { ref: 'C-018', talla: 'M', linea: 'LINEA B', rotacion: 'A', existencias: 0, minimo: 140, maximo: 380, corte: 'OR-1-C-018M', fechaCorte: '08/09/2026', planeada: 240, plan: 'TikTok USA', etapa: 'Alfilerado', etapaIdx: 2, canal: 'TikTok USA', restante: '6 h 40 m', limite: 'hoy 12:30', puntaje: 181, nivel: 'critico',
+    motivo: 'En alfilerado, a una operación de cubrir el pedido', motivoLargo: 'Está en alfilerado: una operación la separa de cubrir el live de hoy.' },
+  { ref: 'C-054', talla: 'S', linea: 'SATELITE', rotacion: 'A', existencias: 0, minimo: 500, maximo: 1200, corte: 'OR-2-C-054S', fechaCorte: '07/09/2026', planeada: 700, plan: 'Amazon USA', etapa: 'Corte', etapaIdx: 1, canal: 'Amazon USA', restante: '1 d 3 h', limite: 'jue 08:00', puntaje: 164, nivel: 'critico',
+    motivo: 'Cero contra un mínimo de 500 unidades', motivoLargo: 'Cero unidades contra un mínimo de 500, con guía a Amazon USA el jueves.' },
+  { ref: 'C-033', talla: '34', linea: 'BRA POS', rotacion: 'A', existencias: 0, minimo: 100, maximo: 260, corte: 'OR-1-C-03334', fechaCorte: '08/09/2026', planeada: 160, plan: 'Shopify USA', etapa: 'Insumos', etapaIdx: 0, canal: 'Shopify USA', restante: '1 d 9 h', limite: 'jue 14:00', puntaje: 152, nivel: 'critico',
+    motivo: 'Ni siquiera cortada: pendiente de insumos', motivoLargo: 'Todavía en insumos: hay que confirmar la tela antes de cortar, es la ruta completa.' },
+  { ref: 'C-034', talla: 'S', linea: 'CARIBE', rotacion: 'A', existencias: 4, minimo: 80, maximo: 200, corte: '-C-034S', fechaCorte: '10/09/2026', planeada: 120, plan: 'Tienda nacional', etapa: 'Confección', etapaIdx: 3, canal: 'Tienda nacional', restante: '2 d 5 h', limite: 'vie 09:00', puntaje: 118, nivel: 'atencion',
+    motivo: '4 unidades en piso, 5% del mínimo', motivoLargo: 'Quedan 4 unidades contra un mínimo de 80: cubre menos de un día de venta.' },
+  { ref: 'C-039', talla: '34', linea: 'BRA POS', rotacion: 'A', existencias: 10, minimo: 80, maximo: 200, corte: 'OR-2-C-03934', fechaCorte: '10/09/2026', planeada: 120, plan: 'Shopify USA', etapa: 'Corte', etapaIdx: 1, canal: 'Shopify USA', restante: '3 d 2 h', limite: 'sáb 09:00', puntaje: 97, nivel: 'atencion',
+    motivo: 'Corte abierto pero inventario bajo mínimo', motivoLargo: 'El corte OR-2 está abierto y el inventario sigue por debajo del mínimo.' },
+  { ref: 'C-002', talla: 'M', linea: 'LINEA B', rotacion: 'A', existencias: 55, minimo: 140, maximo: 380, corte: '-C-002M', fechaCorte: '05/09/2026', planeada: 240, plan: 'Tienda nacional', etapa: 'Alfilerado', etapaIdx: 2, canal: 'Tienda nacional', restante: '4 d 6 h', limite: 'dom 09:00', puntaje: 74, nivel: 'holgado',
+    motivo: 'Bajo mínimo, con reposición ya en alfilerado', motivoLargo: 'Está bajo mínimo, pero la reposición ya viene en alfilerado.' },
+  { ref: 'C-055', talla: 'M', linea: 'SATELITE', rotacion: 'A', existencias: 50, minimo: 200, maximo: 500, corte: '-C-055M', fechaCorte: '06/09/2026', planeada: 300, plan: 'Tienda nacional', etapa: 'Confección', etapaIdx: 3, canal: 'Tienda nacional', restante: '5 d 3 h', limite: 'lun 09:00', puntaje: 68, nivel: 'holgado',
+    motivo: 'Reposición de tienda con ventana amplia', motivoLargo: 'Reposición de tienda con una semana de ventana y corte en confección.' }
+];
+
+const RUTA = ['Insumos', 'Corte', 'Alfilerado', 'Confección', 'Bodega'];
+const ORDEN = ['critico', 'atencion', 'holgado'];
+
+const TIENDAS = [
+  { tienda: 'Tienda Poblado', nota: 'Misma REF y talla en piso · traslado 2 h', factor: 1 },
+  { tienda: 'Tienda Laureles', nota: 'Stock parcial · traslado 3 h', factor: 0.4 },
+  { tienda: 'Bodega Itagüí', nota: 'Saldo de corte anterior · traslado 1 h', factor: 0.15 }
+];
+const TIEMPOS = [
+  { etiqueta: 'Primer turno · 4 h', hora: '10:00' },
+  { etiqueta: 'Hoy · 8 h', hora: '14:00' },
+  { etiqueta: 'Mañana · 24 h', hora: 'mié 06:00' }
+];
+const RAZONES = ['Falta tela o insumo', 'Máquina en mantenimiento', 'Personal incompleto', 'Cambió la prioridad'];
+
+class Component extends DCLogic {
+  state = { pantalla: 'lista', idx: 0, fase: 'asignar', modo: 'prestamo', asign: [0, 0, 0], cantidadPlanta: 0, tiempoIdx: 0, razon: '', nota: '', notaGuardada: '' };
+  ir(p, i) { this.setState({ pantalla: p, idx: i != null ? i : this.state.idx }); window.scrollTo(0, 0); }
+  setAsign(i, v) { const a = this.state.asign.slice(); a[i] = v; this.setState({ asign: a }); }
+
+  renderVals() {
+    const base = DATOS[this.state.idx];
+    const t = N[base.nivel];
+    const faltan = Math.max(0, base.minimo - base.existencias);
+    const sel = Object.assign({}, base, { faltan, puesto: this.state.idx + 1, etiquetaCorta: base.ref + ' · Talla ' + base.talla, puestoTexto: 'puesto ' + (this.state.idx + 1) + ' de ' + DATOS.length, color: t.color, tenue: t.tenue, borde: t.borde, tinta: t.tinta, nivel: t.nivel });
+
+    const cuenta = {};
+    ORDEN.forEach(k => { cuenta[k] = DATOS.filter(d => d.nivel === k).length; });
+
+    const pEtapa = { 0: 60, 1: 48, 2: 40, 3: 30, 4: 12 };
+    const rEtapa = {
+      0: 'En insumos: falta confirmar la tela antes de cortar, ruta completa por delante.',
+      1: 'Cortada: faltan alfilerado y confección.',
+      2: 'Alfilerada: lista para subir a confección.',
+      3: 'En confección: sale hoy si entra al primer turno.',
+      4: 'En bodega como producto terminado.'
+    };
+    const pUrg = sel.canal === 'TikTok USA' ? 80 : sel.canal === 'Tienda nacional' ? 30 : 55;
+    const rUrg = sel.canal === 'TikTok USA' ? 'TikTok exige respuesta en 12 horas desde la venta.'
+      : sel.canal === 'Tienda nacional' ? 'Reposición de tienda con ventana de una semana.'
+      : sel.canal + ': despacho a Estados Unidos con cierre de guía programado.';
+    const pGap = sel.puntaje - pEtapa[sel.etapaIdx] - pUrg;
+
+    const asignado = this.state.asign.reduce((a, b) => a + (b || 0), 0);
+    const pendiente = Math.max(0, faltan - asignado);
+    const cantidadPlanta = this.state.cantidadPlanta || faltan;
+    const pasoPlanta = Math.max(10, Math.round(faltan / 10 / 10) * 10);
+    const esPrestamo = this.state.modo === 'prestamo';
+
+    let visto = null;
+    const filas = DATOS.map((d, i) => {
+      const k = N[d.nivel];
+      const nuevo = d.nivel !== visto;
+      visto = d.nivel;
+      const crit = d.nivel === 'critico';
+      return Object.assign({}, d, {
+        faltan: Math.max(0, d.minimo - d.existencias),
+        color: k.color, tinta: k.tinta,
+        abreGrupo: nuevo, grupo: k.grupo, grupoCuenta: cuenta[d.nivel] + ' referencias',
+        alto: crit ? '104px' : '88px',
+        refSize: crit ? '22px' : '19px',
+        motivoSize: crit ? '17px' : '15px',
+        scoreSize: crit ? '32px' : '26px',
+        abrir: () => this.ir('detalle', i)
+      });
+    });
+
+    return {
+      enLista: this.state.pantalla === 'lista',
+      enDetalle: this.state.pantalla === 'detalle',
+      enAccion: this.state.pantalla === 'accion',
+      nCriticas: cuenta.critico,
+      nAtencion: cuenta.atencion,
+      unidades: DATOS.reduce((a, d) => a + Math.max(0, d.minimo - d.existencias), 0),
+      total: DATOS.length,
+      filas, sel,
+      ruta: RUTA.map((nombre, i) => ({
+        nombre,
+        peso: i === sel.etapaIdx ? 600 : 400,
+        texto: i <= sel.etapaIdx ? 'oklch(0.25 0.012 120)' : 'oklch(0.66 0.01 120)',
+        barra: i < sel.etapaIdx ? '#DDE5B8' : i === sel.etapaIdx ? '#A9C263' : 'oklch(0.93 0.008 120)',
+        detalle: i < sel.etapaIdx ? 'completado' : i === sel.etapaIdx ? 'etapa actual' : 'pendiente'
+      })),
+      campos: [
+        { k: 'LINEA PROD', v: sel.linea }, { k: 'ROTACION', v: sel.rotacion },
+        { k: 'EXISTENCIAS_APP', v: sel.existencias }, { k: 'NIVEL MINIMO', v: sel.minimo },
+        { k: 'NIVEL MAXIMO', v: sel.maximo }, { k: 'N° CORTE', v: sel.corte },
+        { k: 'FECHA DE CORTE', v: sel.fechaCorte }, { k: 'CANTIDAD PLANEADA', v: sel.planeada },
+        { k: 'PLAN', v: sel.plan }
+      ],
+      desglose: [
+        { factor: 'Etapa de producción', puntos: pEtapa[sel.etapaIdx], razon: rEtapa[sel.etapaIdx] },
+        { factor: 'Urgencia del pedido', puntos: pUrg, razon: rUrg },
+        { factor: 'Brecha de inventario', puntos: pGap, razon: 'EXISTENCIAS_APP ' + sel.existencias + ' contra NIVEL MINIMO ' + sel.minimo + '.' }
+      ],
+      tiendas: TIENDAS.map((t, i) => {
+        const disp = Math.max(4, Math.round(faltan * t.factor));
+        const cant = (this.state.asign[i] || 0);
+        const paso = Math.max(5, Math.round(faltan / 10 / 5) * 5);
+        const tope = Math.min(disp, cant + pendiente);
+        return {
+          tienda: t.tienda, nota: t.nota, disponibles: disp, cantidad: cant,
+          menos: () => this.setAsign(i, Math.max(0, cant - paso)),
+          mas: () => this.setAsign(i, Math.min(tope, cant + paso)),
+          todo: () => this.setAsign(i, tope),
+          etiquetaTodo: cant >= tope ? 'Quitar' : 'Todo',
+          accionTodo: cant >= tope ? () => this.setAsign(i, 0) : () => this.setAsign(i, tope)
+        };
+      }),
+      textoAsignado: 'Asignadas ' + asignado + ' de ' + faltan + ' unidades',
+      textoPendiente: pendiente > 0 ? 'faltan ' + pendiente : 'faltante cubierto',
+      anchoBarra: Math.min(100, Math.round((asignado / Math.max(1, faltan)) * 100)) + '%',
+      etiquetaEnviar: asignado > 0 ? 'Enviar solicitud · ' + asignado + ' und' : 'Enviar solicitud',
+      fondoEnviar: asignado > 0 ? '#3B4A1C' : '#E8EBD8',
+      tintaEnviar: asignado > 0 ? '#F4F7E6' : 'oklch(0.55 0.01 120)',
+      cursorEnviar: asignado > 0 ? 'pointer' : 'not-allowed',
+      enviarSolicitud: () => {
+        if (asignado <= 0) return;
+        this.setState({ fase: 'seguimiento', modo: 'prestamo' });
+      },
+      cantidadPlanta: cantidadPlanta,
+      plantaMenos: () => this.setState({ cantidadPlanta: Math.max(10, cantidadPlanta - pasoPlanta) }),
+      plantaMas: () => this.setState({ cantidadPlanta: cantidadPlanta + pasoPlanta }),
+      escribirPlanta: (e) => this.setState({ cantidadPlanta: Math.max(0, parseInt(e.target.value || '0', 10)) }),
+      tiempos: TIEMPOS.map((op, i) => {
+        const on = i === this.state.tiempoIdx;
+        return {
+          etiqueta: op.etiqueta,
+          fondo: on ? '#E5EABE' : '#fff',
+          borde: on ? '#C8D795' : 'oklch(0.92 0.008 120)',
+          tinta: on ? '#3B4A1C' : 'oklch(0.42 0.012 120)',
+          elegir: () => this.setState({ tiempoIdx: i })
+        };
+      }),
+      marcarCurso: () => this.setState({ fase: 'seguimiento', modo: 'planta' }),
+
+      faseAsignar: this.state.pantalla === 'accion' && this.state.fase === 'asignar',
+      faseSeguimiento: this.state.pantalla === 'accion' && this.state.fase === 'seguimiento',
+      faseNovedad: this.state.pantalla === 'accion' && this.state.fase === 'novedad',
+      faseSolucionado: this.state.pantalla === 'accion' && this.state.fase === 'solucionado',
+      tituloSeguimiento: esPrestamo ? 'Solicitud de préstamo enviada.' : 'En curso en planta.',
+      listoEstimado: esPrestamo ? '09:30' : TIEMPOS[this.state.tiempoIdx].hora,
+      avisoTexto: 'Te notificamos a esa hora. Si nadie la marca como lista, queda pendiente de novedad.',
+      resumen: esPrestamo
+        ? TIENDAS.map((t, i) => ({ k: t.tienda, v: (this.state.asign[i] || 0) + ' und' }))
+            .filter(r => parseInt(r.v) > 0)
+            .concat([{ k: 'Total solicitado', v: asignado + ' de ' + faltan + ' und' }])
+        : [
+            { k: 'Cantidad a producir', v: cantidadPlanta + ' und' },
+            { k: 'Etapa actual', v: sel.etapa },
+            { k: 'Turno', v: TIEMPOS[this.state.tiempoIdx].etiqueta }
+          ],
+      hayNota: !!this.state.notaGuardada,
+      notaTexto: this.state.notaGuardada,
+      abrirNovedad: () => this.setState({ fase: 'novedad' }),
+      cancelarNovedad: () => this.setState({ fase: 'seguimiento' }),
+      escribirNota: (e) => this.setState({ nota: e.target.value }),
+      razones: RAZONES.map(r => {
+        const on = this.state.razon === r;
+        return {
+          etiqueta: r,
+          fondo: on ? 'oklch(0.97 0.032 85)' : '#fff',
+          borde: on ? 'oklch(0.9 0.06 85)' : 'oklch(0.92 0.008 120)',
+          tinta: on ? 'oklch(0.45 0.11 65)' : 'oklch(0.42 0.012 120)',
+          elegir: () => this.setState({ razon: r })
+        };
+      }),
+      guardarNovedad: () => this.setState({
+        fase: 'seguimiento',
+        notaGuardada: (this.state.razon || 'Sin categoría') + (this.state.nota ? ' · ' + this.state.nota : '')
+      }),
+      marcarListo: () => this.setState({ fase: 'solucionado' }),
+      tituloSolucionado: esPrestamo
+        ? asignado + ' unidades trasladadas y recibidas.'
+        : cantidadPlanta + ' unidades terminadas en planta.',
+      detalleSolucionado: sel.ref + ' talla ' + sel.talla + ' · marcada lista por Julián C. a las ' + (esPrestamo ? '09:24' : TIEMPOS[this.state.tiempoIdx].hora) + '. Sale de la lista de hoy.',
+      volver: () => this.ir('lista'),
+      volverDetalle: () => this.ir('detalle'),
+      irAccion: () => this.setState({ pantalla: 'accion', fase: 'asignar', asign: [0, 0, 0], cantidadPlanta: faltan, tiempoIdx: 0, razon: '', nota: '', notaGuardada: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>
