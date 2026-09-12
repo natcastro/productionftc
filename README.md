@@ -205,3 +205,8 @@
   Store picker given explicit plus/minus steppers, a live running total, and a
   grouping header.
 </p>
+
+
+<p align="center">
+  <img src="uploads/before%20and%20after.png" alt="Before and After Design Comparison" width="900">
+</p>
